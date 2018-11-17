@@ -1,0 +1,16 @@
+PODS:
+  - CZPicker (0.4.3)
+
+DEPENDENCIES:
+  - CZPicker
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CZPicker
+
+SPEC CHECKSUMS:
+  CZPicker: 55aa1751ea26e209814552da1a9a08cba8bbf72a
+
+PODFILE CHECKSUM: 336656bd433a9ba8a91cc9c9b07d09bcbf6f71df
+
+COCOAPODS: 1.5.0
