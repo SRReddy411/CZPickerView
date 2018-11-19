@@ -54,19 +54,36 @@
                                     <constraint firstAttribute="height" constant="40" id="XWw-8W-Bog"/>
                                 </constraints>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="PICKER TEXT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yq1-da-rzc">
+                                <rect key="frame" x="16" y="163" width="343" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="sMX-Us-X00"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="c0Z-Ky-7Kl"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.66274509800000003" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Yq1-da-rzc" firstAttribute="leading" secondItem="3TL-Kr-pEy" secondAttribute="leading" id="5hx-zr-YN1"/>
+                            <constraint firstItem="Yq1-da-rzc" firstAttribute="trailing" secondItem="3TL-Kr-pEy" secondAttribute="trailing" id="DEs-rh-q9Y"/>
                             <constraint firstItem="fJG-pt-IU6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="I13-gQ-U7L"/>
                             <constraint firstItem="3TL-Kr-pEy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Iy0-nh-I2b"/>
                             <constraint firstItem="fJG-pt-IU6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Yzc-db-OjG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3TL-Kr-pEy" secondAttribute="trailing" constant="16" id="Zp8-JS-cl6"/>
                             <constraint firstItem="3TL-Kr-pEy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ahR-NR-fqT"/>
+                            <constraint firstItem="Yq1-da-rzc" firstAttribute="top" secondItem="1nq-O5-Gse" secondAttribute="bottom" constant="53" id="vsK-qg-t6P"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="endYearTF" destination="1nq-O5-Gse" id="1FQ-24-eIL"/>
+                        <outlet property="pickerTF" destination="Yq1-da-rzc" id="JeP-1p-FUH"/>
                         <outlet property="startYearTF" destination="lL2-dC-yaQ" id="tbz-9u-tm7"/>
                     </connections>
                 </viewController>

@@ -10,7 +10,7 @@ import UIKit
 import CZPicker
 
 class ViewController: UIViewController,UITextFieldDelegate {
-  
+    
     //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
     //        <#code#>
     //    }
@@ -28,7 +28,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet var startYearTF: UITextField!
     @IBOutlet var endYearTF: UITextField!
-    
+    @IBOutlet var pickerTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +63,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-    //MARK:- Button
+    //MARK:- DONE AND CANCEL PICKER BUTTONS ACTION
+    
     @objc func doneClick() {
         startYearTF.resignFirstResponder()
         endYearTF.resignFirstResponder()
@@ -106,6 +107,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    //MARK:- TEXTFILED DELEGATES METHODS
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == startYearTF{
             datePicker.datePickerMode = .date
@@ -123,7 +125,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             startYearTF.inputView = datePicker
             
             
-        }else{
+        }else if textField == endYearTF{
             datePicker.datePickerMode = .date
             
             //ToolBar
@@ -137,6 +139,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
             
             endYearTF.inputAccessoryView = toolbar
             endYearTF.inputView = datePicker
+        }else{
+            
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -144,33 +148,28 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy"
             startYearTF.text = formatter.string(from: datePicker.date)
-        }else{
+        }else if textField == endYearTF{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy"
             let toYear:String = formatter.string(from: datePicker.date)
             if (startYearTF.text?.isEqualToString(find: toYear))! {
                 print("Equals")
-            }else{
+            }else {
                 endYearTF.text = formatter.string(from: datePicker.date)
             }
             
+        }else{
+            
         }
     }
-    
+    //MARK:- PICKER BTN ACTION
     @IBAction func pickerBtnAction(_ sender: Any) {
         
-        
-        
-        
-        
-        
-        
-        
-        //        pickerWithImage = CZPickerView(headerTitle: "Fruits", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        //        pickerWithImage?.delegate = self
-        //        pickerWithImage?.dataSource = self
-        //        pickerWithImage?.needFooterView = false
-        //        pickerWithImage?.show()
+        pickerWithImage = CZPickerView(headerTitle: "Fruits", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        pickerWithImage?.delegate = self
+        pickerWithImage?.dataSource = self
+        pickerWithImage?.needFooterView = false
+        pickerWithImage?.show()
         
     }
     
@@ -181,7 +180,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     
 }
-
+//MARK:- CZPICKER DELEGATE & DATA SOURCE METHODS
 extension ViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     
     func czpickerView(_ pickerView: CZPickerView!, imageForRow row: Int) -> UIImage! {
@@ -200,6 +199,7 @@ extension ViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         print(fruits[row])
+        self.pickerTF.text = fruits[row]
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -210,12 +210,14 @@ extension ViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     private func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         for row in rows {
             if let row = row as? Int {
+                
                 print(fruits[row])
+                
             }
         }
     }
 }
-
+//MARK:- STRINGS COMPARE METHODS
 extension String {
     func isEqualToString(find: String) -> Bool {
         return String(format: self) == find
