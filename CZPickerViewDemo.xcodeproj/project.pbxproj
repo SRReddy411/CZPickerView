@@ -13,6 +13,7 @@
 		FD05C0EE219FDCF6009E238E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD05C0EC219FDCF6009E238E /* Main.storyboard */; };
 		FD05C0F0219FDD11009E238E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD05C0EF219FDD11009E238E /* Assets.xcassets */; };
 		FD05C0F3219FDD11009E238E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD05C0F1219FDD11009E238E /* LaunchScreen.storyboard */; };
+		FD321E4021A2CDB50006F0E0 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD321E3F21A2CDB50006F0E0 /* EventKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		FD05C0EF219FDD11009E238E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD05C0F2219FDD11009E238E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD05C0F4219FDD11009E238E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD321E3F21A2CDB50006F0E0 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD321E4021A2CDB50006F0E0 /* EventKit.framework in Frameworks */,
 				2327B94E808A0B3433C3C358 /* Pods_CZPickerViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +55,7 @@
 		EF069619B6A5138CB45A21E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD321E3F21A2CDB50006F0E0 /* EventKit.framework */,
 				F1FA558AD082ECF125EAFA8E /* Pods_CZPickerViewDemo.framework */,
 			);
 			name = Frameworks;

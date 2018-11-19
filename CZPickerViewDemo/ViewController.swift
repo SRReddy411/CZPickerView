@@ -8,7 +8,7 @@
 
 import UIKit
 import CZPicker
-
+import EventKit
 class ViewController: UIViewController,UITextFieldDelegate {
     
     //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -25,6 +25,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
     var fruitImages = [UIImage]()
     var pickerWithImage: CZPickerView?
     let datePicker = UIDatePicker()
+    
+    
+    let store = EKEventStore()
     
     @IBOutlet var startYearTF: UITextField!
     @IBOutlet var endYearTF: UITextField!
@@ -148,6 +151,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy"
             startYearTF.text = formatter.string(from: datePicker.date)
+            
         }else if textField == endYearTF{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy"
@@ -156,22 +160,109 @@ class ViewController: UIViewController,UITextFieldDelegate {
                 print("Equals")
             }else {
                 endYearTF.text = formatter.string(from: datePicker.date)
+                let startDate = formatter.date(from: startYearTF.text!)
+                
+             
             }
             
         }else{
             
         }
+        
     }
     //MARK:- PICKER BTN ACTION
     @IBAction func pickerBtnAction(_ sender: Any) {
         
-        pickerWithImage = CZPickerView(headerTitle: "Fruits", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        pickerWithImage?.delegate = self
-        pickerWithImage?.dataSource = self
-        pickerWithImage?.needFooterView = false
-        pickerWithImage?.show()
+        addEventToCalendar(title: "joshi ", description: "Remember you or miss you!", startDate: NSDate() as Date, endDate: NSDate() as Date)
+        UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL)
+        
+        
+//        pickerWithImage = CZPickerView(headerTitle: "Fruits", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+//        pickerWithImage?.delegate = self
+//        pickerWithImage?.dataSource = self
+//        pickerWithImage?.needFooterView = false
+//        pickerWithImage?.show()
+      
+        
         
     }
+    
+    func addEventToCalendar(title: String, description: String?, startDate: Date, endDate: Date, completion: ((_ success: Bool, _ error: NSError?) -> Void)? = nil) {
+        
+        let eventStore = EKEventStore()
+        
+        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            if (granted) && (error == nil) {
+                let event = EKEvent(eventStore: eventStore)
+                event.title = title
+                event.startDate = startDate
+                event.endDate = endDate
+                event.notes = description
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                do {
+                    try eventStore.save(event, span: .thisEvent)
+                } catch let e as NSError {
+                    completion?(false, e)
+                    return
+                }
+                completion?(true, nil)
+            } else {
+                completion?(false, error as NSError?)
+            }
+        })
+    }
+    
+    
+    func createEventinTheCalendar(with title:String, forDate eventStartDate:Date, toDate eventEndDate:Date) {
+        
+        store.requestAccess(to: .event) { (success, error) in
+            if  error == nil {
+                let event = EKEvent.init(eventStore: self.store)
+                event.title = title
+                event.calendar = self.store.defaultCalendarForNewEvents // this will return deafult calendar from device calendars
+                event.startDate = eventStartDate
+                event.endDate = eventEndDate
+                
+                let alarm = EKAlarm.init(absoluteDate: Date.init(timeInterval: -3600, since: event.startDate))
+                event.addAlarm(alarm)
+                
+                do {
+                    try self.store.save(event, span: .thisEvent)
+                    //event created successfullt to default calendar
+                } catch let error as NSError {
+                    print("failed to save event with error : \(error)")
+                }
+                
+            } else {
+                //we have error in getting access to device calnedar
+                print("error = \(String(describing: error?.localizedDescription))")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
