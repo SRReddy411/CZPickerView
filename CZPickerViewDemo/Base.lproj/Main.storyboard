@@ -28,17 +28,51 @@
                                     <action selector="pickerBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q4r-WR-fbs"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3TL-Kr-pEy">
+                                <rect key="frame" x="16" y="70" width="343" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="start year" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lL2-dC-yaQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="166.5" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="JeA-DP-KvQ"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End year" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1nq-O5-Gse">
+                                        <rect key="frame" x="176.5" y="0.0" width="166.5" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="686-dn-SmW"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="XWw-8W-Bog"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.66274509800000003" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fJG-pt-IU6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="I13-gQ-U7L"/>
+                            <constraint firstItem="3TL-Kr-pEy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Iy0-nh-I2b"/>
                             <constraint firstItem="fJG-pt-IU6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Yzc-db-OjG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3TL-Kr-pEy" secondAttribute="trailing" constant="16" id="Zp8-JS-cl6"/>
+                            <constraint firstItem="3TL-Kr-pEy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ahR-NR-fqT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="endYearTF" destination="1nq-O5-Gse" id="1FQ-24-eIL"/>
+                        <outlet property="startYearTF" destination="lL2-dC-yaQ" id="tbz-9u-tm7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="116" y="118.29085457271366"/>
         </scene>
     </scenes>
 </document>
